@@ -1,1 +1,1 @@
-# currencies-quotes
+# Currencies Quotes Project
