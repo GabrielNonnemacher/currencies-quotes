@@ -8,12 +8,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './components/header/header.component';
+import { ButtonThemeModeComponent } from './components/buttons/button-theme-mode/button-theme-mode.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ButtonThemeModeComponent
   ],
   imports: [
     BrowserModule,
