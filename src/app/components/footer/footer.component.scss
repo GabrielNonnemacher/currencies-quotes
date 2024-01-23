@@ -1,0 +1,21 @@
+@import "src/styles.scss";
+
+footer {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+.author-name {
+    font-family: $font-1;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+}
+
+.author-name > span {
+    font-weight: 600;
+}

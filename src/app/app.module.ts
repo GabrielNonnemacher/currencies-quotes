@@ -9,13 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonThemeModeComponent } from './components/buttons/button-theme-mode/button-theme-mode.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ButtonThemeModeComponent
+    ButtonThemeModeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
