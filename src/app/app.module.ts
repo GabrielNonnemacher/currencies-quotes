@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ScreenConversionComponent } from './components/screen-conversion/screen-conversion.component';
-import { NumberComponent } from './components/inputs/number/number.component';
+import { InputNumberComponent } from './components/inputs/input-number/input-number.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { NumberComponent } from './components/inputs/number/number.component';
     FooterComponent,
     SelectComponent,
     ScreenConversionComponent,
-    NumberComponent
+    InputNumberComponent
   ],
   imports: [
     BrowserModule,
