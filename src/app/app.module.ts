@@ -10,6 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonThemeModeComponent } from './components/buttons/button-theme-mode/button-theme-mode.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SelectComponent } from './components/inputs/select/select.component';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ScreenConversionComponent } from './components/screen-conversion/screen-conversion.component';
+import { NumberComponent } from './components/inputs/number/number.component';
 
 
 @NgModule({
@@ -17,14 +24,22 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     HeaderComponent,
     ButtonThemeModeComponent,
-    FooterComponent
+    FooterComponent,
+    SelectComponent,
+    ScreenConversionComponent,
+    NumberComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule, MatIconModule
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule, 
+    MatSelectModule, 
+    MatInputModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
