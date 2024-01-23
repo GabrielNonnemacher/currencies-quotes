@@ -4,9 +4,19 @@ button {
     justify-content: center;
     height: 40px;
     width: 40px;
-    background-color: rgba(0, 0, 0, 0.321);
+    background-color: rgba(0, 0, 0, 0.3);
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.6s;
+
+    .iconTheme {
+        animation: 0.6s themeAnimationIn ease-in;
+        opacity: 1;
+    }
+}
+
+@keyframes themeAnimationIn {
+    from {
+        opacity: 0;
+    }
 }

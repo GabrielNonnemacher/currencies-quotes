@@ -1,5 +1,12 @@
 <button type="button"
         (click)="onClick()">
-    <img src="{{icon()}}"
-         alt="Icon theme mode">
+    <img *ngIf="themeLight() !== theme()"
+         class="iconTheme"
+         src="{{iconLight()}}"
+         alt="Icon theme light">
+
+    <img *ngIf="themeLight() === theme()"
+         class="iconTheme"
+         src="{{iconDark()}}"
+         alt="Icon theme dark">
 </button>

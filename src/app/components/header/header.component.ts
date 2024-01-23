@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { URL_HELPER } from 'src/app/helpers/constants/url.constant';
 
 @Component({
   selector: 'quote-header',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  title = "Currencies Quotes"
+  title = signal<string>("Currencies Quotes");
+  logo = signal<string>(URL_HELPER.icons.logoHeader);
 }

@@ -1,6 +1,12 @@
 <mat-toolbar color="primary"
              class="body">
-    <h2>{{title}}</h2>
+    <div class="d-flex">
+        <img src="{{logo()}}"
+             alt="logo do projeto">
+
+        <h2>{{title()}} </h2>
+    </div>
+
 
     <quote-button-theme-mode></quote-button-theme-mode>
 
