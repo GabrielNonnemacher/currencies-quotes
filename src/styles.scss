@@ -2,7 +2,14 @@
 
 $font-1: 'Poppins', sans-serif;
 
+$white-100: rgb(255, 255, 255);
 $black-200: rgb(33, 33, 33);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
