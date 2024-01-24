@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'quote-select',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
-  foods = ["aggsggs", "sjjsjsjsjjs"]
+  @Input() items: any = [];
 }
