@@ -1,7 +1,8 @@
 <section class="body">
     <div class="container-select">
         <quote-select [items]="currenciesInit()"></quote-select>
-        <quote-input-number></quote-input-number>
+        <quote-input-number (valueChange)="changeValueInit($event)">
+        </quote-input-number>
     </div>
 
     <div class="symbol-reverse">

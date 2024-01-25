@@ -28,4 +28,9 @@ export class ScreenConversionComponent implements OnInit {
       );
     });
   }
+
+  public changeValueInit(param: number): void {
+    console.log(param);
+    
+  }
 }
