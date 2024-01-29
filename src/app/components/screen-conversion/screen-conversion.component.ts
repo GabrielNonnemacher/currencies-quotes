@@ -9,13 +9,22 @@ import { Currencie } from 'src/app/helpers/models/currencie.model';
   styleUrls: ['./screen-conversion.component.scss']
 })
 export class ScreenConversionComponent implements OnInit {
-  iconConvertion = signal<string>(URL_HELPER.icons.convertion);
+  currencieInit = signal<string>("");
+  currencieFinal = signal<string>("");
   currenciesInit = signal<string[]>([]);
   currenciesFinal = signal<string[]>([]);
   allCurrencies = signal<Currencie[]>(NAME_CURRENCIES);
+  iconConvertion = signal<string>(URL_HELPER.icons.convertion);
+  currencieTitleInit = signal<string>("Currencie to convert");
+  currencieTitleFinal = signal<string>("Currencie converted");
 
   public ngOnInit(): void {
     this.setCurrenciesFilter()
+  }
+
+  public currencieToConvert(param: string): void {
+    console.log(param);
+    
   }
 
   private setCurrenciesFilter(): void {
