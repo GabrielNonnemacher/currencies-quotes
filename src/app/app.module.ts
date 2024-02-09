@@ -17,17 +17,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { InputNumberComponent } from './components/inputs/input-number/input-number.component';
 import { SelectComponent } from './components/inputs/select/select.component';
 import { ScreenConversionComponent } from './components/screen-conversion/screen-conversion.component';
+import { CurrenciesService } from './services/currencies.service';
+import { ServicesModule } from './services/services.module';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    ButtonThemeModeComponent,
-    FooterComponent,
-    SelectComponent,
-    ScreenConversionComponent,
-    InputNumberComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +36,12 @@ import { ScreenConversionComponent } from './components/screen-conversion/screen
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule,
+    ServicesModule
   ],
   providers: [
+    CurrenciesService
   ],
   bootstrap: [AppComponent]
 })
