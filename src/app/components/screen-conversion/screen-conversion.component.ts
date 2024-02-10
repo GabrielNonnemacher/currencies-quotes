@@ -1,4 +1,6 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NAME_CURRENCIES } from 'src/app/helpers/constants/currencies.constant';
 import { URL_HELPER } from 'src/app/helpers/constants/url.constant';
 import { Functions } from 'src/app/helpers/functions/functions';
@@ -13,48 +15,87 @@ import { CurrenciesService } from 'src/app/services/currencies.service';
 export class ScreenConversionComponent implements OnInit {
 
   constructor(
-    private service: CurrenciesService
+    private service: CurrenciesService,
+    private destroyRef: DestroyRef
   ) {}
 
-  currencieInit = signal<string>("");
-  currencieFinal = signal<string>("");
-  currenciesInit = signal<string[]>([]);
-  currenciesFinal = signal<string[]>([]);
+  currencieInit = signal<Currencie>({} as Currencie);
+  currencieFinal = signal<Currencie>({} as Currencie);
+  currencieInitValue = signal<number>(0);
+  currencieFinalValue = signal<number>(0);
+  currenciesInit = signal<Currencie[]>([] as Currencie[]);
+  currenciesFinal = signal<Currencie[]>([] as Currencie[]);
   allCurrencies = signal<Currencie[]>(NAME_CURRENCIES);
+  allCurrenciesMatches = signal<string[]>([] as string[]);
   iconConvertion = signal<string>(URL_HELPER.icons.convertion);
   currencieTitleInit = signal<string>("Currencie to convert");
   currencieTitleFinal = signal<string>("Currencie converted");
-
-
-  cf = Functions.allAcronymsCurrencies();
+  ngUnsubscribe = new Subject<void>();
 
   public ngOnInit(): void {
-    console.log(this.cf);
+    this.setCurrenciesInit();
+    this.getListMatches();
+  }
+
+  public currencieToConvert(): void {
+    if (!this.currencieInit() || !this.currencieFinal()) return;
+
+    this.service.getConvertedLast(this.currencieInit().acronym, this.currencieFinal().acronym)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+
+        console.log(result);
+        
+
+      });
+  }
+
+  private setCurrenciesInit(): void {
+    this.currenciesInit.set(
+      this.allCurrencies()
+    );
+    this.currenciesFinal.set(
+      this.allCurrencies()
+    );
+  }
+
+  private filterCurrencies(param: Currencie, isFinal: boolean): void {
+    if (!isFinal) {
+      this.currenciesFinal.set(
+        Functions.currenciesFiltereds(param.acronym, this.allCurrenciesMatches())
+      );
+    }
     
-    this.setCurrenciesFilter()
+    this.currencieToConvert();
   }
 
-  public currencieToConvert(param: string): void {
-    console.log(param);
+  public changeValueCurrencie(param: number, isFinal: boolean): void {
+    if (isFinal) {
+      this.currencieFinalValue.set(param);
+    } else {
+      this.currencieInitValue.set(param);
+    }
 
-    this.service.getSite().subscribe((response) => {
-      console.log(response)
-    });
+    this.currencieToConvert();
   }
 
-  private setCurrenciesFilter(): void {
-    this.allCurrencies()?.forEach((currencie: Currencie) => {
-      this.currenciesInit.update(fullname =>
-        [...fullname, currencie.fullName]
-      );
-      this.currenciesFinal.update(fullname =>
-        [...fullname, currencie.fullName]
-      );
-    });
+  public changeToConvert(param: Currencie, isFinal: boolean): void {
+    if (isFinal) {
+      this.currencieFinal.set(param);
+    } else {
+      this.currencieInit.set(param);
+    }
+
+    this.filterCurrencies(param, isFinal);
   }
 
-  public changeValueInit(param: number): void {
-    console.log(param);
-
+  public getListMatches(): void {
+    this.service.getCurrenciesMatches()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        this.allCurrenciesMatches.set(
+          Functions.extractXmlTags(result)
+        );
+      });
   }
 }

@@ -10,49 +10,38 @@ export class Functions {
         return response;
     }
 
-    static currenciesFiltereds(params: string) {
-        const response = [] as Currencie[];
-        const s = NAME_CURRENCIES;
+    static currenciesFiltereds(acronym: string, listMatches: string[]): Currencie[] {
+        const acronymList = [] as string[];
 
-        switch (params) {
-            case "BRL":
-                s.forEach((elem: Currencie) => {
-                    response.push(elem)
-                });
-                break;
+        listMatches.forEach((elem: string) => {
+            const pair = elem.split("-");
+            const currencie = pair[0];
+            const match = pair[1];
 
-            default:
-                break;
-        }
+            if (currencie === acronym) {
+                acronymList.push(match);
+            }
+        });
 
-        return response;
+        return this.getCurrencies(acronymList);
     }
 
 
-    static extrairMoedas(xml: string): { atual: string; convertida: string }[] {
-        const inicioTag = '<XML>';
-        const fimTag = '<XML>';
-        const moedas: { atual: string; convertida: string }[] = [];
-        
-        let inicioIndex = xml.indexOf(inicioTag);
-        let fimIndex = xml.indexOf(fimTag);
-        
-        while (inicioIndex !== -1 && fimIndex !== -1 && fimIndex > inicioIndex) {
-            const valorMoeda = xml.substring(inicioIndex + inicioTag.length, fimIndex);
-            const [moedaAtual, moedaConvertida] = valorMoeda.split('-');
-            
-            if (moedaAtual && moedaConvertida) {
-                moedas.push({
-                    atual: moedaAtual,
-                    convertida: moedaConvertida
-                });
-            }
-    
-            // Avança para a próxima ocorrência
-            inicioIndex = xml.indexOf(inicioTag, fimIndex);
-            fimIndex = xml.indexOf(fimTag, inicioIndex);
+    static extractXmlTags(xmlString: string): string[] {
+        const regexXml = /<([^\/?!\s>]+)[\s>]/g;
+        const matches = [] as string[];
+        let match;
+
+        while ((match = regexXml.exec(xmlString)) !== null) {
+            matches.push(match[1]);
         }
-    
-        return moedas;
+
+        return matches;
+    }
+
+    static getCurrencies(acronymList: string[]): Currencie[] {
+        return NAME_CURRENCIES.filter((elem: Currencie) => {
+            return acronymList.includes(elem.acronym);
+        });
     }
 }

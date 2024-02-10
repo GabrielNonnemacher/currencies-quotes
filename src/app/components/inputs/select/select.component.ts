@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Currencie } from 'src/app/helpers/models/currencie.model';
 
 @Component({
   selector: 'quote-select',
@@ -6,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
-  @Input() value?: string;
+  @Input() value?: Currencie;
   @Input() title?: string;
-  @Input() items: any = [];
+  @Input() items: Currencie[] = [] as Currencie[];
   @Output() valueChange = new EventEmitter;
 
   public onSelect(): void {

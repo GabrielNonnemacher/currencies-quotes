@@ -11,13 +11,13 @@ export class CurrenciesService {
 
   private readonly URL_BASE = " https://economia.awesomeapi.com.br";
 
-  getSite() {
+  getConvertedLast(acronymInit: string, acronymFinal: string) {
     return this.http.get<{ result: any }>(
-      `${this.URL_BASE}/last/BRL-BTC`
+      `${this.URL_BASE}/last/${acronymInit}-${acronymFinal}`
     )
   }
 
-  getCurrencies() {
-    return this.http.get<{ result: XMLDocument }>(`${this.URL_BASE}/xml/available`);
+  getCurrenciesMatches() {
+    return this.http.get(`${this.URL_BASE}/xml/available`,{ responseType: 'text' });
   }
 }

@@ -3,7 +3,7 @@
     <mat-select [(ngModel)]="value"
                 (ngModelChange)="onSelect()">
         <mat-option *ngFor="let item of items"
-                    [value]="item">{{item}}
+                    [value]="item">{{item.fullName}}
         </mat-option>
     </mat-select>
 </mat-form-field>
