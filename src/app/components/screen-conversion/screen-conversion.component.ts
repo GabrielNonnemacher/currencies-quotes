@@ -6,6 +6,7 @@ import { URL_HELPER } from 'src/app/helpers/constants/url.constant';
 import { Functions } from 'src/app/helpers/functions/functions';
 import { Currencie } from 'src/app/helpers/models/currencie.model';
 import { CurrenciesService } from 'src/app/services/currencies.service';
+import { Information } from 'src/app/helpers/models/information.model';
 
 @Component({
   selector: 'quote-screen-conversion',
@@ -30,6 +31,7 @@ export class ScreenConversionComponent implements OnInit {
   iconConvertion = signal<string>(URL_HELPER.icons.convertion);
   currencieTitleInit = signal<string>("Currencie to convert");
   currencieTitleFinal = signal<string>("Currencie converted");
+  valueCurrencies = signal<Information>({} as Information);
   ngUnsubscribe = new Subject<void>();
 
   public ngOnInit(): void {
@@ -38,13 +40,12 @@ export class ScreenConversionComponent implements OnInit {
   }
 
   public currencieToConvert(): void {
-    if (!this.currencieInit() || !this.currencieFinal()) return;
+    if (!this.currencieInit()?.acronym || !this.currencieFinal()?.acronym) return;
 
-    this.service.getConvertedLast(this.currencieInit().acronym, this.currencieFinal().acronym)
+    this.service.getConvertedLast(this.currencieFinal().query)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
 
-        console.log(result);
         
 
       });
@@ -62,10 +63,10 @@ export class ScreenConversionComponent implements OnInit {
   private filterCurrencies(param: Currencie, isFinal: boolean): void {
     if (!isFinal) {
       this.currenciesFinal.set(
-        Functions.currenciesFiltereds(param.acronym, this.allCurrenciesMatches())
+        Functions.currenciesFiltereds(param.acronym, this.allCurrenciesMatches()) || []
       );
-    }
-    
+    }    
+
     this.currencieToConvert();
   }
 
@@ -75,8 +76,6 @@ export class ScreenConversionComponent implements OnInit {
     } else {
       this.currencieInitValue.set(param);
     }
-
-    this.currencieToConvert();
   }
 
   public changeToConvert(param: Currencie, isFinal: boolean): void {
@@ -84,6 +83,7 @@ export class ScreenConversionComponent implements OnInit {
       this.currencieFinal.set(param);
     } else {
       this.currencieInit.set(param);
+      this.currencieFinal.set({} as Currencie);
     }
 
     this.filterCurrencies(param, isFinal);

@@ -11,9 +11,9 @@ export class CurrenciesService {
 
   private readonly URL_BASE = " https://economia.awesomeapi.com.br";
 
-  getConvertedLast(acronymInit: string, acronymFinal: string) {
+  getConvertedLast(query: string) {
     return this.http.get<{ result: any }>(
-      `${this.URL_BASE}/last/${acronymInit}-${acronymFinal}`
+      `${this.URL_BASE}/last/${query}`
     )
   }
 
