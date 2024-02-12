@@ -1,3 +1,4 @@
+import { findIndex } from "rxjs";
 import { NAME_CURRENCIES } from "../constants/currencies.constant";
 import { Acronym, AcronymDTO } from "../models/acronym.model";
 import { Currencie, CurrencieDTO } from "../models/currencie.model";
@@ -13,7 +14,7 @@ export class Functions {
 
     static currenciesFiltereds(acronymCurrencie: string, listMatches: string[]): Currencie[] {
         const acronymList = [] as Acronym[];
-        
+
         listMatches.forEach((elem: string) => {
             const pair = elem.split("-");
             const currencie = pair[0];
@@ -25,9 +26,9 @@ export class Functions {
                 acronym.inverted = false;
                 acronym.query = elem;
                 acronymList.push(AcronymDTO.mapperDto(acronym));
-            } 
-            
-            if(match === acronymCurrencie) {
+            }
+
+            if (match === acronymCurrencie) {
                 acronym.acronym = currencie;
                 acronym.inverted = true;
                 acronym.query = elem;
@@ -53,17 +54,35 @@ export class Functions {
 
     static getCurrencies(acronymList: Acronym[]): Currencie[] {
         const response = [] as Currencie[];
-        
+
         NAME_CURRENCIES.forEach((elem: Currencie) => {
             acronymList.forEach((acronym: Acronym) => {
-                if(acronym.acronym === elem.acronym){
+                if (acronym.acronym === elem.acronym) {
                     response.push(CurrencieDTO.mapperView(acronym, elem));
                 }
             });
         });
 
-        console.log(response);
-        
+        return this.removeDuplicates(response);
+    }
+
+
+    static removeDuplicates(currencies: Currencie[]): Currencie[] {
+        const response = currencies.filter((currencie: Currencie, index: number, response: Currencie[]) => {
+            const acronymsEquals = currencies.filter((elem: Currencie) => elem.acronym === currencie.acronym);
+
+            if (acronymsEquals?.length > 1) {
+                const a = response.filter((e: Currencie) => acronymsEquals.includes(e));
+                const b = acronymsEquals.find((e: Currencie) => !e.inverted);
+                if (!a && b) {
+                    return b;
+                }
+                return;
+            } else {
+                return currencie;
+            }
+        });
+
         return response;
     }
 }
