@@ -1,12 +1,12 @@
 import { Component, DestroyRef, OnInit, signal } from '@angular/core';
-import { Subject } from 'rxjs';
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { Subject } from 'rxjs';
 import { NAME_CURRENCIES } from 'src/app/helpers/constants/currencies.constant';
 import { URL_HELPER } from 'src/app/helpers/constants/url.constant';
 import { Functions } from 'src/app/helpers/functions/functions';
 import { Currencie } from 'src/app/helpers/models/currencie.model';
+import { InformationCurrencie, InformationCurrencieDTO } from 'src/app/helpers/models/informationCurrencie.model';
 import { CurrenciesService } from 'src/app/services/currencies.service';
-import { Information } from 'src/app/helpers/models/information.model';
 
 @Component({
   selector: 'quote-screen-conversion',
@@ -31,7 +31,7 @@ export class ScreenConversionComponent implements OnInit {
   iconConvertion = signal<string>(URL_HELPER.icons.convertion);
   currencieTitleInit = signal<string>("Currencie to convert");
   currencieTitleFinal = signal<string>("Currencie converted");
-  valueCurrencies = signal<Information>({} as Information);
+  valueCurrencies = signal<InformationCurrencie>({} as InformationCurrencie);
   ngUnsubscribe = new Subject<void>();
 
   public ngOnInit(): void {
@@ -41,13 +41,12 @@ export class ScreenConversionComponent implements OnInit {
 
   public currencieToConvert(): void {
     if (!this.currencieInit()?.acronym || !this.currencieFinal()?.acronym) return;
+    const keyObj = this.currencieFinal().query.replace("-", "")
 
     this.service.getConvertedLast(this.currencieFinal().query)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((result) => {
-
-        
-
+      .subscribe((response) => {
+        this.valueCurrencies.set(InformationCurrencieDTO.mapperView(response[keyObj]));
       });
   }
 
@@ -65,7 +64,7 @@ export class ScreenConversionComponent implements OnInit {
       this.currenciesFinal.set(
         Functions.currenciesFiltereds(param.acronym, this.allCurrenciesMatches()) || []
       );
-    }    
+    }
 
     this.currencieToConvert();
   }
