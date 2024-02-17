@@ -47,6 +47,7 @@ export class ScreenConversionComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((response) => {
         this.valueCurrencies.set(InformationCurrencieDTO.mapperView(response[keyObj]));
+        this.changeValueCurrencie(this.currencieInitValue());
       });
   }
 
@@ -69,11 +70,15 @@ export class ScreenConversionComponent implements OnInit {
     this.currencieToConvert();
   }
 
-  public changeValueCurrencie(param: number, isFinal: boolean): void {
-    if (isFinal) {
-      this.currencieFinalValue.set(param);
-    } else {
-      this.currencieInitValue.set(param);
+  public changeValueCurrencie(param: number): void {
+    this.currencieInitValue.set(param);
+
+    if (this.valueCurrencies().ask) {
+      this.currencieFinalValue.set(
+        parseFloat(this.currencieFinal().inverted
+          ? ((!param ? 0 : param) / parseFloat(this.valueCurrencies().ask)).toFixed(6)
+          : ((!param ? 0 : param) * parseFloat(this.valueCurrencies().ask)).toFixed(6))
+      );
     }
   }
 
@@ -83,6 +88,7 @@ export class ScreenConversionComponent implements OnInit {
     } else {
       this.currencieInit.set(param);
       this.currencieFinal.set({} as Currencie);
+      this.clearValues();
     }
 
     this.filterCurrencies(param, isFinal);
@@ -96,5 +102,11 @@ export class ScreenConversionComponent implements OnInit {
           Functions.extractXmlTags(result)
         );
       });
+  }
+
+  private clearValues(): void {
+    this.currencieInitValue.set(0);
+    this.currencieFinalValue.set(0);
+    this.valueCurrencies.set({} as InformationCurrencie);
   }
 }

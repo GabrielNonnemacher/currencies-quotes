@@ -6,7 +6,8 @@
                       (valueChange)="changeToConvert($event, false)">
         </quote-select>
 
-        <quote-input-number (valueChange)="changeValueCurrencie($event, false)">
+        <quote-input-number [value]="currencieInitValue()"
+                            (valueChange)="changeValueCurrencie($event)">
         </quote-input-number>
     </div>
 
@@ -22,7 +23,8 @@
                       (valueChange)="changeToConvert($event, true)">
         </quote-select>
 
-        <quote-input-number (valueChange)="changeValueCurrencie($event, true)">
+        <quote-input-number [value]="currencieFinalValue()"
+                            [disabled]="true">
         </quote-input-number>
     </div>
 </section>
