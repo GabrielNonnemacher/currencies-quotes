@@ -15,8 +15,9 @@
     width: 90%;
     max-width: 1080px;
     border-radius: 4px;
-    border: 2px solid $gray-100;
+    border: 2px solid var(--grey-100);
     padding: 36px;
+    background-color: var(--background-2);
 }
 
 .container-inputs {
@@ -73,9 +74,9 @@
     width: 48%;
     min-width: 360px;
     border-radius: 4px;
-    border: 2px solid $gray-100;
+    border: 2px solid var(--grey-100);
     padding: 8px;
-    color: $white-100;
+    color: var(--white-100);
     font-size: 16px;
     line-height: 16px;
     transition: all 0.6s ease-in;
@@ -90,6 +91,7 @@
 
 p {
     margin: 8px 0;
+    color: var(--color-2);
 }
 
 @media (max-width: 880px) {

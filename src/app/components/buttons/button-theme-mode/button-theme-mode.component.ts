@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, signal } from '@angular/core';
 import { URL_HELPER } from 'src/app/helpers/constants/url.constant';
 import { ThemeMode } from 'src/app/helpers/enum/themeMode.enum';
 
@@ -8,6 +8,7 @@ import { ThemeMode } from 'src/app/helpers/enum/themeMode.enum';
   styleUrls: ['./button-theme-mode.component.scss']
 })
 export class ButtonThemeModeComponent {
+
   theme = signal<string>(ThemeMode.Light);
   themeLight = signal<string>(ThemeMode.Light);
   iconLight = signal<string>(URL_HELPER.icons.themeLight);

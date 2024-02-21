@@ -1,4 +1,5 @@
-<mat-toolbar class="body">
+<mat-toolbar class="body"
+             [ngClass]="{'dark': themeLight() !== theme(), 'light': themeLight() === theme()}">
     <div class="d-flex">
         <img src="{{logo()}}"
              alt="logo do projeto">
@@ -6,6 +7,6 @@
         <h2>{{title()}} </h2>
     </div>
 
-    <quote-button-theme-mode>
+    <quote-button-theme-mode (themeMode)="setThemeMode($event)">
     </quote-button-theme-mode>
 </mat-toolbar>
