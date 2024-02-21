@@ -7,6 +7,7 @@ import { Currencie } from 'src/app/helpers/models/currencie.model';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
+
   @Input() value?: Currencie;
   @Input() title?: string;
   @Input() items: Currencie[] = [] as Currencie[];

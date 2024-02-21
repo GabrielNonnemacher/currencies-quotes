@@ -1,29 +1,41 @@
-import { Acronym } from "./acronym.model";
-
 export interface Currencie {
-    acronym: string;
-    name: string;
+    codigo: number;
+    codigoIata: string;
+    codigoPais: number;
+    codigoSistema: number;
+    codigoSwift: string;
+    dataHoraInclusao: string;
+    dataHoraRegistro: number;
+    genero: string;
+    nome: string;
+    nomeFormatado: string;
+    nomeSingular: string;
+    sigla: string;
+    simbolo: string;
+    tipo: string;
+    tipoAtivo: string;
     fullName: string;
-    inverted: boolean;
-    query: string;
 }
 
 export class CurrencieDTO {
-    static mapperDto = (acronym: string, name: string): Currencie => { 
+    static mapperView = (params: Currencie): Currencie => {
         return {
-            acronym: acronym,
-            name: name,
-            fullName: `${acronym} - ${name}` 
-        } as Currencie;
-    };
-
-    static mapperView = (params: Acronym, currencie: Currencie): Currencie => {
-        return {
-            acronym: params.acronym,
-            name: currencie.name,
-            fullName: currencie.fullName,
-            inverted: params.inverted,
-            query: params.query
+            codigo: params.codigo,
+            codigoIata: params.codigoIata,
+            codigoPais: params.codigoPais,
+            codigoSistema: params.codigoSistema,
+            codigoSwift: params.codigoSwift,
+            dataHoraInclusao: params.dataHoraInclusao,
+            dataHoraRegistro: params.dataHoraRegistro,
+            genero: params.genero,
+            nome: params.nome,
+            nomeFormatado: params.nomeFormatado,
+            nomeSingular: params.nomeSingular,
+            sigla: params.sigla,
+            simbolo: params.simbolo,
+            tipo: params.tipo,
+            tipoAtivo: params.tipoAtivo,
+            fullName: params.nomeFormatado + " - " + params.sigla
         };
     };
 }

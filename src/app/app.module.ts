@@ -9,17 +9,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonThemeModeComponent } from './components/buttons/button-theme-mode/button-theme-mode.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { InputNumberComponent } from './components/inputs/input-number/input-number.component';
-import { SelectComponent } from './components/inputs/select/select.component';
-import { ScreenConversionComponent } from './components/screen-conversion/screen-conversion.component';
+import { ComponentsModule } from './components/components.module';
 import { CurrenciesService } from './services/currencies.service';
 import { ServicesModule } from './services/services.module';
-import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -38,7 +33,8 @@ import { ComponentsModule } from './components/components.module';
     MatInputModule,
     FormsModule,
     ComponentsModule,
-    ServicesModule
+    ServicesModule,
+    RouterModule
   ],
   providers: [
     CurrenciesService

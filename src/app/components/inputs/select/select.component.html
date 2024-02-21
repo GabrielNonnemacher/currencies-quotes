@@ -5,5 +5,6 @@
         <mat-option *ngFor="let item of items"
                     [value]="item">{{item.fullName}}
         </mat-option>
+        <mat-option>{{value?.fullName}} </mat-option>
     </mat-select>
 </mat-form-field>

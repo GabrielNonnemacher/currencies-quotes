@@ -1,14 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 $font-1: 'Poppins', sans-serif;
 
+$primary: rgb(50, 68, 147);
 $white-100: rgb(255, 255, 255);
+$gray-100: rgb(176, 176, 176);
 $black-200: rgb(33, 33, 33);
+$red-100: rgb(223, 52, 52);
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: $font-1;
 }
 
 html,
@@ -18,7 +22,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: $font-1;
 }
 
 .d-flex {

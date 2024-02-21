@@ -1,0 +1,62 @@
+<section class="body">
+    <div class="conversion">
+        <div class="container-inputs">
+            <div>
+                <div class="container-input">
+                    <quote-input-number [value]="valueCurrencie()"
+                                        (valueChange)="changeValueCurrencie($event)">
+                    </quote-input-number>
+                </div>
+
+                <div class="container-select">
+                    <quote-select [items]="currenciesInit()"
+                                  [value]="currencieInit()"
+                                  [title]="currencieTitleInit()"
+                                  (valueChange)="changeCurrencie($event, false)">
+                    </quote-select>
+                </div>
+            </div>
+
+            <div class="symbol-reverse">
+                <img src="{{iconConvertion()}}"
+                     alt="Icon of convertion">
+            </div>
+
+            <div>
+                <div class="container-input">
+                    <quote-input-number [value]="valueConversion().value || 0"
+                                        [disabled]="true">
+                    </quote-input-number>
+                </div>
+
+                <div class="container-select">
+                    <quote-select [items]="currenciesFinal()"
+                                  [value]="currencieFinal()"
+                                  [title]="currencieTitleFinal()"
+                                  (valueChange)="changeCurrencie($event, true)">
+                    </quote-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-buttons">
+            <quote-button-clear (clicked)="clearAll()">
+            </quote-button-clear>
+
+            <quote-button-convert (clicked)="toConvert()">
+            </quote-button-convert>
+        </div>
+    </div>
+
+    <div [ngClass]="{'responses': valueConversion().value, 'responsesNot': !valueConversion().value}">
+        <div [ngClass]="{'box': valueConversion().value, 'boxNot': !valueConversion().value}">
+            <p><strong>Conversion from:</strong> {{currencieInit().nomeFormatado}}/{{currencieInit().codigoSwift}}</p>
+            <p><strong>Value to convert:</strong> {{valueCurrencie()}}</p>
+        </div>
+
+        <div [ngClass]="{'box': valueConversion().value, 'boxNot': !valueConversion().value}">
+            <p><strong>To:</strong> {{currencieFinal().nomeFormatado}}/{{currencieFinal().codigoSwift}}</p>
+            <p><strong>Conversion result:</strong> {{valueConversion().value}}</p>
+        </div>
+    </div>
+</section>
