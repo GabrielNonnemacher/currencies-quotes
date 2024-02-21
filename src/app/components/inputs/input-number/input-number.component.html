@@ -1,7 +1,9 @@
-<input type="number"
-       name="number-input"
-       id="number-input"
-       (input)="f()"
-       (ngModelChange)="onChange($event)"
-       [disabled]="disabled"
-       [(ngModel)]="value">
+<div class="body">
+       <input #input
+              name="number-input"
+              id="number-input"
+              (input)="value"
+              (ngModelChange)="onChange($event)"
+              [(ngModel)]="value"
+              number>
+</div>

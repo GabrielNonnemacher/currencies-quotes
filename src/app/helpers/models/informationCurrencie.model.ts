@@ -1,31 +1,15 @@
 export interface InformationCurrencie {
-    ask: string;
-    bid: string;
-    code: string;
-    codein: string;
-    create_date: string;
-    high: string;
-    low: string;
-    name: string;
-    pctChange: string;
-    timestamp: string;
-    varBid: string;
+    cotacaoBoletim: boolean;
+    data: string;
+    tipoMoeda: string;
 }
 
 export class InformationCurrencieDTO {
-    static mapperView = (params: InformationCurrencie): InformationCurrencie => {
+    static mapperDto = (params: InformationCurrencie): InformationCurrencie => {
         return {
-            ask: params.ask,
-            bid: params.bid,
-            code: params.code,
-            codein: params.codein,
-            create_date: params.create_date,
-            high: params.high,
-            low: params.low,
-            name: params.name,
-            pctChange: params.pctChange,
-            timestamp: params.timestamp,
-            varBid: params.varBid
+            cotacaoBoletim: params.cotacaoBoletim,
+            data: params?.data?.slice(0, 10),
+            tipoMoeda: params.tipoMoeda
         };
     };
 }
