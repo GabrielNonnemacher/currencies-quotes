@@ -7,16 +7,15 @@ button {
     border-radius: 4px;
     border: none;
     cursor: pointer;
-    color: $white-100;
-    background-color: $primary;
+    color: var(--white-100);
+    background-color: var(--primary);
     transition: all 0.6s;
     margin-left: 16px;
     margin-top: 8px;
 }
 
 button:hover {
-    color: $primary;
-    background-color: $white-100;
+    background-color: var(--secondary);
 }
 
 @media (max-width: 560px) {

@@ -3,8 +3,8 @@
 button {
     height: 48px;
     width: 200px;
-    background-color: $primary;
-    color: $white-100;
+    background-color: var(--primary);
+    color: var(--white-100);
     font-family: $font-1;
     font-size: 16px;
     border: none;
@@ -14,7 +14,7 @@ button {
 }
 
 button:hover {
-    color: $primary;
-    background-color: $white-100;
+    color: var(--primary);
+    background-color:  var(--white-100);
     font-weight: 600;
 }

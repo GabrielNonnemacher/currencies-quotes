@@ -1,5 +1,6 @@
-<section class="body">
-    <quote-header></quote-header>
+<section class="body"
+         [ngClass]="{'dark': themeLight() !== theme(), 'light': themeLight() === theme()}">
+    <quote-header (themeMode)="setThemeMode($event)"></quote-header>
 
     <quote-screen-conversion></quote-screen-conversion>
 

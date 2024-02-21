@@ -6,15 +6,15 @@
     padding-bottom: 1px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    background-color: $gray-100;
+    background-color: var(--grey-100);
 }
 
 input {
     height: 56px;
     width: 100%;
-    background-color: #4a4a4a;
+    background-color: whitesmoke;
     border: none;
-    color: $white-100;
+    color: var(--color);
     font-family: $font-1;
     font-size: 20px;
     border-top-left-radius: 4px;
@@ -28,12 +28,11 @@ input::-webkit-outer-spin-button {
 }
 
 input:focus {
-    border: 1px solid $gray-100;
     border-bottom: none;
     outline: none;
-    background-color: #424242;
+    background-color: #e3e3e3;
 }
 
-input:disabled{
+input:disabled {
     cursor: not-allowed;
 }
