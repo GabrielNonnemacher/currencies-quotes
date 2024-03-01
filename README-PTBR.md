@@ -7,9 +7,9 @@ O projeto de Cotações de Moeda ajuda na aprendizagem e na prática das minhas 
 
 ## ⚙️ Funcionalidades
 
-* Selecione entre as duas opções (*Modo Luz ou Modo Luz*);
-  * **Modo Luz**: Ao selecionar Modo Luz, o usuário tem um modo de visualização com cores mais claras no fundo.
-  * **Modo Escuro**: Ao selecionar o Modo Escuro, o usuário tem um modo de visualização com cores mais escuras no fundo.
+* Selecione entre as duas opções (*Modo Light ou Modo Dark*);
+  * **Modo Light**: Ao selecionar Modo Luz, o usuário tem um modo de visualização com cores mais claras no fundo.
+  * **Modo Dark**: Ao selecionar o Modo Escuro, o usuário tem um modo de visualização com cores mais escuras no fundo.
 * Selecione duas moedas e adicione o valor à ser convertido;
   * **Tela de Resposta**: Ao selecionar as duas moedas a adicionar um valor no campo input, na tela será mostrado as cotações.
 
@@ -56,7 +56,7 @@ ng build
 <br/>
 
 ## ➡️ Link
-<a href="https://gabriel-nonnemacher-currencies-quotes.vercel.app" target="_blank" rel="noopener noreferrer">Link Calculator<a/>
+<a href="https://gabriel-nonnemacher-currencies-quotes.vercel.app" target="_blank" rel="noopener noreferrer">Link Currencies Quotes<a/>
 <br/>
 
 ## 👀 Preview
