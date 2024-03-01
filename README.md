@@ -17,8 +17,8 @@ The Currency Quotes project helps me learn and practice my developer skills, esp
 
 ## 🛠️ Technologies and Tools
 
-* Angular - v16.1 - [Documentação](https://angular.io)
-* API - Central Bank of Brazil - [Documentação](https://www.bcb.gov.br)
+* Angular - v16.1 - [Documentation](https://angular.io)
+* API - Central Bank of Brazil - [Documentation](https://www.bcb.gov.br)
   
 <br/>
 
