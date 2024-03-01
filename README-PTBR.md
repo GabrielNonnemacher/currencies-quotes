@@ -10,6 +10,8 @@ O projeto de Cotações de Moeda ajuda na aprendizagem e na prática das minhas 
 * Selecione entre as duas opções (*Modo Luz ou Modo Luz*);
   * **Modo Luz**: Ao selecionar Modo Luz, o usuário tem um modo de visualização com cores mais claras no fundo.
   * **Modo Escuro**: Ao selecionar o Modo Escuro, o usuário tem um modo de visualização com cores mais escuras no fundo.
+* Selecione duas moedas e adicione o valor à ser convertido;
+  * **Tela de Resposta**: Ao selecionar as duas moedas a adicionar um valor no campo input, na tela será mostrado as cotações.
 
 <br/>
 
@@ -58,6 +60,7 @@ ng build
 <br/>
 
 ## 👀 Preview
-### Tela no modo claro
+### Tela no modo claro e no modo escuro
+![currenciequotes preview](https://github.com/GabrielNonnemacher/currencies-quotes/assets/87139289/affed2f3-bf21-49c1-84b8-2503497066f2)
 
-### Tela no modo escuro
+
